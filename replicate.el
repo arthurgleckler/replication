@@ -1,3 +1,5 @@
+(require 'cl-lib)
+
 (defun replicated-maybe-commit-and-push ()
   "If `default-directory' is my Git-replicated directory and some
 files have been updated, commit them and push."
