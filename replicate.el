@@ -11,7 +11,7 @@ files have been updated, commit them and push."
     (condition-case nil
         (with-temp-message "Committing changes."
           (cl-flet ((run (command)
-                         (assert (zerop (call-process-shell-command command)))))
+                      (assert (zerop (call-process-shell-command command)))))
             (run "git commit --all --message='Updated.'")
             (run "git push")))
       (error (message "Committing changes failed.")))))
