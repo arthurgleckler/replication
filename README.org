@@ -2,6 +2,11 @@
 
 This is a nearly trivial Git-based replication system for Emacs.
 
+I wrote it because, while I enjoyed using Google Drive and its ilk, I
+wanted something that ran only on my own machines, that provided all
+the benefits of Git for merging changes made offline, and that I
+controlled completely.  And for [[http://speechcode.com/jargon/jargon.info.Hack.html][hack value]].
+
 To use it:
 
 - Create the directory ~$USER/replicated/~ on at least two different
