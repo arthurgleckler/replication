@@ -1,0 +1,30 @@
+* replication.el
+
+This is a nearly trivial Git-based replication system for Emacs.
+
+To use it:
+
+- Create the directory ~$USER/replicated/~ on at least two different
+  machines.
+
+- On machine A, run ~git init $USER/replicated~.
+
+- On machine B, use ~git clone~ to clone A's ~replicated/~.
+
+- On each machine, make sure that ~replication.el~ is on your
+  `load-path'.
+
+- On each machine, add this to your ~.emacs~:
+
+#+BEGIN_SRC emacs-lisp
+(require 'replication)
+(setq replication-directory "~/replicated")
+(add-hook 'after-save-hook 'replication-save-hook)
+#+END_SRC
+
+After that, editing an existing file in ~replicated/~ on any of the
+machines will automatically cause the file to be committed to Git,
+after which ~git push~ will be run.
+
+You'll still have to run ~git pull~ to retrieve updates from other
+machines.
