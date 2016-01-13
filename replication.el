@@ -12,20 +12,18 @@
 (defun replication-git-push ()
   "Start a <git push> process in the background."
   (interactive)
-  (let ((name "*git-push*"))
-    (setq replication-process
-	  (start-process-shell-command name name "git push"))
-    (set-process-sentinel
-     replication-process
-     (lexical-let ((name name))
-       (lambda (process string)
-	 (let ((status (process-status process)))
-	   (unless (eq status 'run)
-	     (case status
-	       ((exit) (message "Replication: %s" (string-trim string)))
-	       (t (message "Replication %s status: %s"
-			   name
-			   status))))))))))
+  (setq replication-process
+	(start-process-shell-command "*git-push*" "*git-push*" "git push"))
+  (set-process-sentinel
+   replication-process
+   (lambda (process string)
+     (let ((status (process-status process)))
+       (unless (eq status 'run)
+	 (case status
+	   ((exit) (message "Replication: %s" (string-trim string)))
+	   (t (message "Replication %s status: %s"
+		       "*git-push*"
+		       status))))))))
 
 (defun replication-save-hook ()
   "If `default-directory' is my Git-replicated directory and some
