@@ -54,8 +54,7 @@ commit them and push."
 	       "git commit --all --message='Updated.'"))))
 	(error (message "Committing changes failed.")))
       (cond ((and replication-process
-		  (not (eq (process-status replication-process)
-			   'exit)))
+		  (eq 'run (process-status replication-process)))
 	     (set-process-sentinel
 	      replication-process
 	      (lambda (process string) (replication-git-push)))
