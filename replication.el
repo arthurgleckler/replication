@@ -31,9 +31,9 @@ files have been updated, commit them and push."
   (interactive)
   (unless replication-directory
     (error "Set `replication-directory' first."))
-  (when (string-equal (expand-file-name default-directory)
-		      (file-name-as-directory
-		       (expand-file-name replication-directory)))
+  (when (string-prefix-p (file-name-as-directory
+			  (expand-file-name replication-directory))
+			 (expand-file-name default-directory))
     (replication-maybe-commit-and-push)))
 
 (defun replication-maybe-commit-and-push ()
