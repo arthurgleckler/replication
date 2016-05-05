@@ -21,9 +21,7 @@
        (unless (eq status 'run)
 	 (case status
 	   ((exit) (message "Replication: %s" (string-trim string)))
-	   (t (message "Replication %s status: %s"
-		       "*git-push*"
-		       status))))))))
+	   (t (message "Replication: %s" status))))))))
 
 (defun replication-save-hook ()
   "If `default-directory' is my Git-replicated directory and some
